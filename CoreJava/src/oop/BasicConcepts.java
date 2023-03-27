@@ -1,7 +1,10 @@
 package oop;
 
-/*
- * OOP (Object Oriented Programming)
+/*POP (Procedure Oriented Programming Language) C,C++
+ * 
+ *  
+ * OOP (Object Oriented Programming) : It is a software programming development Model.
+ * C++,Java,Python,Php
  * 
  * There are 4 important pillars in OOP.
  * 
@@ -11,7 +14,8 @@ package oop;
  * 4)Abstraction 
  * 
  * 
- * Encapsulation : It is wrapping of a class in a single unit.
+ * Encapsulation : It is wrapping up of a data members and member function of a class 
+ * 				   in a single unit.
  * 
  * e.g capsule
  * 
@@ -32,9 +36,7 @@ package oop;
  *    3) Destruction
  *    
  *    
- *    e.g a Papercup.*    
- *    
- *    
+ *    e.g a Papercup.*  
  *    
  * 
  * 
