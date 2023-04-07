@@ -1,8 +1,9 @@
 package com.exception;
 /*
  * 
- * Custom Exception : it is a User Defined Exception, where we create our own Exception Class.
+ * Custom Exception :
  * 
+ * - it is a User Defined Exception, where we create our own Exception Class.   * 
  * - To create our Exception class, we need to extends the Exception class.
  * 
  */
