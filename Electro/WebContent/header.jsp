@@ -61,7 +61,9 @@
 							%>
 					<li><a href="profile.jsp"><i class="fa fa-user-o"></i>
 							Profile</a></li>
-					<li><span style="color:white;"><b>Welcome <%=u.getFname() %></b></span></li>													
+					<li><span style="color:white;"><b>Welcome <%=u.getFname() %></b></span></li>
+					<li><a href="changepassword.jsp"><i class="fa fa-user-o"></i>
+							Change Password</a></li>													
 					<li><a href="logout.jsp"><i class="fa fa-user-o"></i>
 							Logout</a></li>
 

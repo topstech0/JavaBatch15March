@@ -89,6 +89,40 @@ public class UserDao {
 		return u;		
 		
 	}
+		
+	
+	public static void changePassword(String email,String password)
+	{
+		try {
+			
+			Connection conn = ElectroUtil.createConnection();
+			String sql = "update user set password=? where email=?";
+			PreparedStatement pst = conn.prepareStatement(sql);
+			pst.setString(1, password);
+			pst.setString(2, email);
+			pst.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void updateProfile(User u)
+	{
+		try {
+			Connection conn = ElectroUtil.createConnection();
+			String sql = "update user set fname=?,lname=?,mobile=?,address=? where email=?";
+			PreparedStatement pst = conn.prepareStatement(sql);
+			pst.setString(1, u.getFname());
+			pst.setString(2, u.getLname());
+			pst.setLong(3, u.getMobile());
+			pst.setString(4, u.getAddress());
+			pst.setString(5, u.getEmail());
+			pst.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 	
 	

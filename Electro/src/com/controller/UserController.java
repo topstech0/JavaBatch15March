@@ -60,11 +60,67 @@ public class UserController extends HttpServlet {
 				HttpSession session = request.getSession();
 				session.setAttribute("u", u);
 				request.getRequestDispatcher("index.jsp").forward(request, response);
-			}
+			}		
 					
+		}
+		else if(action.equalsIgnoreCase("Change Password"))
+		{
+			HttpSession session = request.getSession();
+			User u = (User)session.getAttribute("u");
 			
+			if(u.getPassword().equals(request.getParameter("oldpassword")))
+			{
+				if(request.getParameter("newpassword").equals(request.getParameter("cnewpassword")))
+				{
+					UserDao.changePassword(u.getEmail(), request.getParameter("newpassword"));
+					response.sendRedirect("logout.jsp");
+				}
+				else
+				{
+					request.setAttribute("msg", "New Password and Confirm New Password Doesn't Match.");
+					request.getRequestDispatcher("changepassword.jsp").forward(request, response);
+				}
+			}
+			else
+			{
+				request.setAttribute("msg", "Old Password is Incorrect.");
+				request.getRequestDispatcher("changepassword.jsp").forward(request, response);
+			}
 			
 		}
+		
+		else if(action.equalsIgnoreCase("Update Profile"))
+		{
+			User u = new User();
+			u.setUid(Integer.parseInt(request.getParameter("uid")));
+			u.setFname(request.getParameter("fname"));
+			u.setLname(request.getParameter("lname"));
+			u.setEmail(request.getParameter("email"));
+			u.setMobile(Long.parseLong(request.getParameter("mobile")));
+			u.setAddress(request.getParameter("address"));
+			UserDao.updateProfile(u);
+			HttpSession session = request.getSession();
+			session.setAttribute("u", u);
+			request.getRequestDispatcher("profile.jsp").forward(request, response);			
+		}
+		
+		if(action.equalsIgnoreCase("Send OTP"))
+		{
+			String email = request.getParameter("email");
+			boolean flag = UserDao.checkEmail(email);
+			
+			if(flag==true)
+			{
+				
+			}
+			else
+			{
+				request.setAttribute("msg", "Email not registered.");
+				request.getRequestDispatcher("forgotpassword.jsp").forward(request, response);
+			}
+			
+		}
+		
 		
 
 	}
