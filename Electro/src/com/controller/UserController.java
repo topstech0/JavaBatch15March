@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import com.bean.User;
 import com.dao.UserDao;
+import com.service.Services;
 
 @WebServlet("/UserController")
 public class UserController extends HttpServlet {
@@ -111,6 +112,15 @@ public class UserController extends HttpServlet {
 			
 			if(flag==true)
 			{
+				int min = 1000;
+				int max = 9999;
+				int otp = (int)(Math.random()*(max-min+1)+min);
+				Services.sendMail(email, otp);
+				request.setAttribute("email", email);
+				request.setAttribute("otp", otp);
+				request.setAttribute("msg", "OTP Sent Successfully.");
+				request.getRequestDispatcher("otp.jsp").forward(request, response);
+				
 				
 			}
 			else
@@ -119,6 +129,45 @@ public class UserController extends HttpServlet {
 				request.getRequestDispatcher("forgotpassword.jsp").forward(request, response);
 			}
 			
+		}
+		
+		else if(action.equalsIgnoreCase("verify otp"))
+		{
+			String email = request.getParameter("email");
+			int otp1 = Integer.parseInt(request.getParameter("otp1"));
+			int otp2 = Integer.parseInt(request.getParameter("otp2"));
+			if(otp1==otp2)
+			{
+				request.setAttribute("email", email);
+				request.getRequestDispatcher("new_password.jsp").forward(request, response);
+			}
+			else
+			{
+				request.setAttribute("email", email);
+				request.setAttribute("otp", otp1);
+				request.setAttribute("msg", "Invalid OTP");
+				request.getRequestDispatcher("otp.jsp").forward(request, response);
+			}
+			
+		}
+		
+		else if(action.equalsIgnoreCase("update password"))
+		{
+			String email = request.getParameter("email");
+			String np = request.getParameter("newpassword");
+			String cnp = request.getParameter("cnewpassword");
+			
+			if(np.equals(cnp))
+			{
+				UserDao.changePassword(email, np);
+				response.sendRedirect("login.jsp");
+			}
+			else
+			{
+				request.setAttribute("email", email);
+				request.setAttribute("msg", "New Password and Confirm New Password doesn't match.");
+				request.getRequestDispatcher("new_password.jsp").forward(request, response);
+			}
 		}
 		
 		
