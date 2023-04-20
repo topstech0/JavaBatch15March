@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@include file="header.jsp" %>
+<%@include file="seller_header.jsp" %>
     <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -23,10 +23,10 @@
 				<!-- row -->
 				<div class="row">
 					<div class="col-md-12">
-						<h3 class="breadcrumb-header">Registration</h3>
+						<h3 class="breadcrumb-header">Profile</h3>
 						<ul class="breadcrumb-tree">
 							<li><a href="index.jsp">Home</a></li>
-							<li class="active">Register</li>
+							<li class="active">My Profile</li>
 						</ul>
 					</div>
 				</div>
@@ -55,69 +55,32 @@
 						<!-- Billing Details -->
 						<div class="billing-details">
 							<div class="section-title">
-								<h3 class="title">Registration</h3>
+								<h3 class="title">My Profile</h3>
 							</div>
-							<form name="register" method="post" action="UserController">
+							<form name="profile" method="post" action="UserController">
+								<input type="hidden" name="uid" value="<%=u.getUid()%>">
 								
 								<div class="form-group">
-								<table>
-								<tr>
-									<th>UserType : </th>
-									
-									<td>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										<input  type="radio" name="usertype" value="user">User
-										
-									</td>
-								
-									<td>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										<input  type="radio" name="usertype" value="seller">Seller
-									</td>
-									
-								</tr>
-								</table>									
-								</div>
-							
-								<div class="form-group">
-									<input class="input" type="text" name="fname" placeholder="First Name">
+									<input class="input" type="text" name="usertype" value="<%=u.getUsertype()%>" readonly>
 								</div>
 								<div class="form-group">
-									<input class="input" type="text" name="lname" placeholder="Last Name">
+									<input class="input" type="text" name="fname" placeholder="First Name" value="<%=u.getFname()%>">
 								</div>
 								<div class="form-group">
-									<input class="input" type="text" name="email" placeholder="Email">
+									<input class="input" type="text" name="lname" placeholder="Last Name" value="<%=u.getLname()%>">
 								</div>
 								<div class="form-group">
-									<input class="input" type="text" name="mobile" placeholder="Mobile">
+									<input class="input" type="text" name="email" placeholder="Email" value="<%=u.getEmail()%>" readonly>
 								</div>
 								<div class="form-group">
-									<input class="input" type="password" name="password" placeholder="Password">
+									<input class="input" type="text" name="mobile" placeholder="Mobile" value="<%=u.getMobile()%>">
+								</div>								
+																
+								<div class="form-group">
+									<textarea class="input" rows="5" cols="10" placeholder="Address" name="address"><%=u.getAddress()%></textarea>
 								</div>
 								<div class="form-group">
-									<input class="input" type="password" name="cpassword" placeholder="Confirm Password">
-								</div>
-								<div class="form-group">
-								<table>
-								<tr>
-									<td>Gender : </td>
-									<td>
-										<input  type="radio" name="gender" value="Female">Female
-										
-									</td>
-								
-									<td>
-										<input  type="radio" name="gender" value="Male">Male
-									</td>
-									
-								</tr>
-								</table>									
-								</div>
-								<div class="form-group">
-									<textarea class="input" rows="5" cols="10" placeholder="Address" name="address"></textarea>
-								</div>
-								<div class="form-group">
-									<input type="submit" class="primary-btn order-submit" name="action" value="Register"> 
+									<input type="submit" class="primary-btn order-submit" name="action" value="Update Profile"> 
 								</div>
 							</form>
 							

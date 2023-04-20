@@ -37,9 +37,10 @@ public class UserController extends HttpServlet {
 				u.setCpassword(request.getParameter("cpassword"));
 				u.setGender(request.getParameter("gender"));
 				u.setAddress(request.getParameter("address"));
+				u.setUsertype(request.getParameter("usertype"));
 				UserDao.registerUser(u);
 				request.setAttribute("msg", "Registration is successfull.");
-				request.getRequestDispatcher("register.jsp").forward(request, response);
+				request.getRequestDispatcher("login.jsp").forward(request, response);
 				// response.sendRedirect("register.jsp");
 			} else {
 				request.setAttribute("msg", "Password and Confirm Password doesn't Match.");
@@ -58,9 +59,19 @@ public class UserController extends HttpServlet {
 			}
 			else
 			{
-				HttpSession session = request.getSession();
-				session.setAttribute("u", u);
-				request.getRequestDispatcher("index.jsp").forward(request, response);
+				if(u.getUsertype().equals("user"))
+				{
+					HttpSession session = request.getSession();
+					session.setAttribute("u", u);
+					request.getRequestDispatcher("index.jsp").forward(request, response);					
+				}
+				else
+				{
+					HttpSession session = request.getSession();
+					session.setAttribute("u", u);
+					request.getRequestDispatcher("seller_index.jsp").forward(request, response);
+				}				
+				
 			}		
 					
 		}
@@ -69,25 +80,48 @@ public class UserController extends HttpServlet {
 			HttpSession session = request.getSession();
 			User u = (User)session.getAttribute("u");
 			
-			if(u.getPassword().equals(request.getParameter("oldpassword")))
-			{
-				if(request.getParameter("newpassword").equals(request.getParameter("cnewpassword")))
+			if(u.getUsertype().equals("user"))
+			{						
+				if(u.getPassword().equals(request.getParameter("oldpassword")))
 				{
-					UserDao.changePassword(u.getEmail(), request.getParameter("newpassword"));
-					response.sendRedirect("logout.jsp");
+					if(request.getParameter("newpassword").equals(request.getParameter("cnewpassword")))
+					{
+						UserDao.changePassword(u.getEmail(), request.getParameter("newpassword"));
+						response.sendRedirect("logout.jsp");
+					}
+					else
+					{
+						request.setAttribute("msg", "New Password and Confirm New Password Doesn't Match.");
+						request.getRequestDispatcher("changepassword.jsp").forward(request, response);
+					}
 				}
 				else
 				{
-					request.setAttribute("msg", "New Password and Confirm New Password Doesn't Match.");
+					request.setAttribute("msg", "Old Password is Incorrect.");
 					request.getRequestDispatcher("changepassword.jsp").forward(request, response);
 				}
 			}
 			else
 			{
-				request.setAttribute("msg", "Old Password is Incorrect.");
-				request.getRequestDispatcher("changepassword.jsp").forward(request, response);
+				if(u.getPassword().equals(request.getParameter("oldpassword")))
+				{
+					if(request.getParameter("newpassword").equals(request.getParameter("cnewpassword")))
+					{
+						UserDao.changePassword(u.getEmail(), request.getParameter("newpassword"));
+						response.sendRedirect("logout.jsp");
+					}
+					else
+					{
+						request.setAttribute("msg", "New Password and Confirm New Password Doesn't Match.");
+						request.getRequestDispatcher("seller_changepassword.jsp").forward(request, response);
+					}
+				}
+				else
+				{
+					request.setAttribute("msg", "Old Password is Incorrect.");
+					request.getRequestDispatcher("seller_changepassword.jsp").forward(request, response);
+				}
 			}
-			
 		}
 		
 		else if(action.equalsIgnoreCase("Update Profile"))
@@ -99,10 +133,21 @@ public class UserController extends HttpServlet {
 			u.setEmail(request.getParameter("email"));
 			u.setMobile(Long.parseLong(request.getParameter("mobile")));
 			u.setAddress(request.getParameter("address"));
+			u.setUsertype(request.getParameter("usertype"));
 			UserDao.updateProfile(u);
 			HttpSession session = request.getSession();
 			session.setAttribute("u", u);
-			request.getRequestDispatcher("profile.jsp").forward(request, response);			
+			if(u.getUsertype().equals("user"))
+			{
+				request.getRequestDispatcher("profile.jsp").forward(request, response);	
+			}
+			else
+			{
+				request.getRequestDispatcher("seller_profile.jsp").forward(request, response);	
+			}
+			
+			
+					
 		}
 		
 		if(action.equalsIgnoreCase("Send OTP"))

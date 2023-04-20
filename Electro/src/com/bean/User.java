@@ -3,7 +3,7 @@ package com.bean;
 public class User {
 	
 	int uid;
-	String fname,lname,email,password,cpassword,gender,address;
+	String fname,lname,email,password,cpassword,gender,address,usertype;
 	long mobile;
 	
 	public int getUid() {
@@ -59,6 +59,12 @@ public class User {
 	}
 	public void setMobile(long mobile) {
 		this.mobile = mobile;
+	}
+	public String getUsertype() {
+		return usertype;
+	}
+	public void setUsertype(String usertype) {
+		this.usertype = usertype;
 	}
 	
 

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@include file="header.jsp" %>
+<%@include file="seller_header.jsp" %>
     <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -23,10 +23,10 @@
 				<!-- row -->
 				<div class="row">
 					<div class="col-md-12">
-						<h3 class="breadcrumb-header">Registration</h3>
+						<h3 class="breadcrumb-header">Change Password</h3>
 						<ul class="breadcrumb-tree">
 							<li><a href="index.jsp">Home</a></li>
-							<li class="active">Register</li>
+							<li class="active">Change Password</li>
 						</ul>
 					</div>
 				</div>
@@ -55,69 +55,26 @@
 						<!-- Billing Details -->
 						<div class="billing-details">
 							<div class="section-title">
-								<h3 class="title">Registration</h3>
+								<h3 class="title">Change Password</h3>
 							</div>
-							<form name="register" method="post" action="UserController">
+							<form name="changepassword" method="post" action="UserController">
+														
+								<div class="form-group">
+									<input class="input" type="password" name="oldpassword" placeholder="Old Password">
+								</div>
 								
 								<div class="form-group">
-								<table>
-								<tr>
-									<th>UserType : </th>
-									
-									<td>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										<input  type="radio" name="usertype" value="user">User
-										
-									</td>
+									<input class="input" type="password" name="newpassword" placeholder="New Password">
+								</div>
 								
-									<td>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										<input  type="radio" name="usertype" value="seller">Seller
-									</td>
-									
-								</tr>
-								</table>									
-								</div>
-							
 								<div class="form-group">
-									<input class="input" type="text" name="fname" placeholder="First Name">
+									<input class="input" type="password" name="cnewpassword" placeholder="Confirm New Password">
 								</div>
-								<div class="form-group">
-									<input class="input" type="text" name="lname" placeholder="Last Name">
-								</div>
-								<div class="form-group">
-									<input class="input" type="text" name="email" placeholder="Email">
-								</div>
-								<div class="form-group">
-									<input class="input" type="text" name="mobile" placeholder="Mobile">
-								</div>
-								<div class="form-group">
-									<input class="input" type="password" name="password" placeholder="Password">
-								</div>
-								<div class="form-group">
-									<input class="input" type="password" name="cpassword" placeholder="Confirm Password">
-								</div>
-								<div class="form-group">
-								<table>
-								<tr>
-									<td>Gender : </td>
-									<td>
-										<input  type="radio" name="gender" value="Female">Female
-										
-									</td>
 								
-									<td>
-										<input  type="radio" name="gender" value="Male">Male
-									</td>
-									
-								</tr>
-								</table>									
-								</div>
+								
+								
 								<div class="form-group">
-									<textarea class="input" rows="5" cols="10" placeholder="Address" name="address"></textarea>
-								</div>
-								<div class="form-group">
-									<input type="submit" class="primary-btn order-submit" name="action" value="Register"> 
+									<input type="submit" class="primary-btn order-submit" name="action" value="Change Password">																		
 								</div>
 							</form>
 							
