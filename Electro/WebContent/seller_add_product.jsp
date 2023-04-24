@@ -57,8 +57,8 @@
 							<div class="section-title">
 								<h3 class="title">Add Product</h3>
 							</div>
-							<form name="addproduct" method="post" action="UserController">
-								
+							<form name="addproduct" method="post" action="ProductController" enctype="multipart/form-data">
+								<input type="hidden" name="uid" value="<%=u.getUid()%>">
 								<div class="form-group">
 								<table>
 								<tr>
@@ -94,11 +94,11 @@
 								</div>
 								
 								<div class="form-group">
-									<textarea class="input" rows="5" cols="10" placeholder=" Product Description" name="address"></textarea>
+									<textarea class="input" rows="5" cols="10" placeholder=" Product Description" name="prod_desc"></textarea>
 								</div>
 								
 								<div class="form-group">
-									<input type="file">
+									<input type="file" name="prod_img">
 								</div>
 								<div class="form-group">
 									<input type="submit" class="primary-btn order-submit" name="action" value="Add Product"> 

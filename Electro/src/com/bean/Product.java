@@ -3,7 +3,7 @@ package com.bean;
 public class Product {
 	
 	int pid,uid,prod_price;
-	String prod_category,prod_model,prod_desc,prod_img;
+	String prod_category,prod_model,prod_desc,prod_img,prod_name;
 	
 	public int getPid() {
 		return pid;
@@ -46,6 +46,12 @@ public class Product {
 	}
 	public void setProd_img(String prod_img) {
 		this.prod_img = prod_img;
+	}
+	public String getProd_name() {
+		return prod_name;
+	}
+	public void setProd_name(String prod_name) {
+		this.prod_name = prod_name;
 	}
 	
 	
