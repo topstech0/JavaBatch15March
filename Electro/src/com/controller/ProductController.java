@@ -67,6 +67,23 @@ public class ProductController extends HttpServlet {
 		}
 		
 		
+		if(action.equalsIgnoreCase("update product"))
+		{			
+		    Product p = new Product();
+		   // p.setUid(Integer.parseInt(request.getParameter("uid")));
+		    p.setProd_category(request.getParameter("prod_category"));
+		    p.setProd_name(request.getParameter("prod_name"));
+		    p.setProd_model(request.getParameter("prod_model"));
+		    p.setProd_price(Integer.parseInt(request.getParameter("prod_price")));
+		    p.setProd_desc(request.getParameter("prod_desc"));		   
+		    ProductDao.updateProduct(p);
+		    request.setAttribute("msg", "Product Updated Successfully.");
+		    request.getRequestDispatcher("seller_product_edit.jsp").forward(request, response); 
+			
+		}
+		
+		
+		
 		
 		
 	}

@@ -148,8 +148,7 @@
 
 							<!-- Cart -->
 							<div class="dropdown">
-								<a class="dropdown-toggle" data-toggle="dropdown"
-									aria-expanded="true" href="seller_view_product.jsp"> <i class="fa fa-list"></i> <span>View 
+								<a href="seller_view_product.jsp"> <i class="fa fa-list"></i> <span>View 
 										Product</span>									
 								</a>
 								

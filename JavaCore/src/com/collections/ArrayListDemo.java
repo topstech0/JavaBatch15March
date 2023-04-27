@@ -49,7 +49,8 @@ public class ArrayListDemo {
 		al.add(true);
 		al.add('t');
 		al.add(10);
-		al.add(null);
+
+;
 		System.out.println(al);
 		
 		System.out.println(al.indexOf(10.10f));
