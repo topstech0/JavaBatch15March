@@ -46,50 +46,48 @@
 							<div class="products-tabs">
 								<!-- tab -->
 								<div id="tab1" class="tab-pane active">
-									<div class="products-slick" data-nav="#slick-nav-1">			
-
-										
-
+									<div class="products-slick" data-nav="#slick-nav-1">
 										<!-- product -->
-										<%
-											List<Product> list = ProductDao.getAllProduct();
-											for(Product p : list)
-											{
-										%>
 										
-										
-										
-										
+									<%
+										int pid = Integer.parseInt(request.getParameter("pid"));
+										Product p = ProductDao.getProductById(pid);
+									%>
 										
 										<div class="product">
 											<div class="product-img">
 												<img src="Product_Images/<%=p.getProd_img() %>" alt="" height="200px" width="80px">
 												<div class="product-label">
 													<span class="sale">-30%</span>
+													<span class="new">NEW</span>
 												</div>
 											</div>
 											<div class="product-body">
-												<p class="product-category"><%=p.getProd_category() %></p>
-												<h3 class="product-name"><%=p.getProd_name() %></h3>
-												<h4 class="product-price">Rs. <%=p.getProd_price() %></h4>
+												<p class="product-category">Category : <%=p.getProd_category() %></p>
+												<h3 class="product-name">Name : <%=p.getProd_name() %></h3>
+												<h4 class="product-price"> Price Rs.<%=p.getProd_price() %></h4>
 												<div class="product-rating">
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
 												</div>
-												<div class="product-btns">
-													<a href="product_detail.jsp?pid=<%=p.getPid()%>">
-														<input type="button" value="Details" class="btn btn-primary">
-													</a>
-												</div>
+												<p class="product-category">Description : <%=p.getProd_desc() %></p>
+												<a href="add_to_wishlist.jsp?pid=<%=p.getPid()%>">
+													<input type="submit" value="Add to Wishlist" class="btn btn-primary">
+												</a>
+																						
 											</div>
-											<!-- <div class="add-to-cart">
+											<div class="add-to-cart">
+											<a href="add_to_cart.jsp?pid=<%=p.getPid()%>">
 												<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-											</div> -->
+											</a>
+											</div> 
 										</div>
 										<!-- /product -->
-
-										<%
-											}
-										%>
-
+									
+										
 									</div>
 									<div id="slick-nav-1" class="products-slick-nav"></div>
 								</div>
@@ -104,11 +102,26 @@
 			<!-- /container -->
 		</div>
 		<!-- /SECTION -->
-		<br><br><br>
-		
+
 		
 
-	
+		<!-- SECTION -->
+		<div class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+
+				
+
+					
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /SECTION -->
+
 		
 
 		

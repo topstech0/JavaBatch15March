@@ -67,6 +67,7 @@
 												<p class="product-category"><%=p.getProd_category() %></p>
 												<h3 class="product-name"><%=p.getProd_name() %></h3>
 												<h4 class="product-price"> Rs.<%=p.getProd_price() %></h4>
+												<h3 class="product-name"><%=p.getProd_model() %></h3>
 												<div class="product-rating">
 													<i class="fa fa-star"></i>
 													<i class="fa fa-star"></i>

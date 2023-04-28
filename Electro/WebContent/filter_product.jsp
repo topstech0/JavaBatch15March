@@ -52,7 +52,9 @@
 
 										<!-- product -->
 										<%
-											List<Product> list = ProductDao.getAllProduct();
+											//out.println(request.getParameter("prod_category"));
+											String pc= request.getParameter("prod_category");
+											List<Product> list = ProductDao.getProductByCategory(pc);
 											for(Product p : list)
 											{
 										%>

@@ -194,7 +194,7 @@
 			<div id="responsive-nav">
 				<!-- NAV -->
 				<ul class="main-nav nav navbar-nav">
-					<li class="active"><a href="seller_index.jsp">Home</a></li>
+					<li class="active"><a href="seller_view_product.jsp">Home</a></li>
 					
 				</ul>
 				<!-- /NAV -->

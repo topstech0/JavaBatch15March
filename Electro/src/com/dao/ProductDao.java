@@ -37,7 +37,7 @@ public class ProductDao {
 		List<Product> list = new ArrayList<Product>();
 		try {
 			Connection conn = ElectroUtil.createConnection();
-			String sql = "select * from product";
+			String sql = "select    * from product";
 			PreparedStatement pst = conn.prepareStatement(sql);
 			ResultSet rs = pst.executeQuery();
 			while(rs.next())
@@ -110,4 +110,50 @@ public class ProductDao {
 			e.printStackTrace();
 		}
 	}
+	
+	
+	public static void deleteProduct(int pid)
+	{
+		try {
+			Connection conn = ElectroUtil.createConnection();
+			String sql = "delete from product where pid=?";
+			PreparedStatement pst = conn.prepareStatement(sql);
+			pst.setInt(1, pid);
+			pst.executeUpdate();			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static List<Product> getProductByCategory(String prod_category)
+	{
+		List<Product> list = new ArrayList<Product>();
+		try {
+			Connection conn = ElectroUtil.createConnection();
+			String sql = "select  * from product where prod_category=?";
+			PreparedStatement pst = conn.prepareStatement(sql);
+			pst.setString(1, prod_category);
+			ResultSet rs = pst.executeQuery();
+			while(rs.next())
+			{
+				Product p = new Product();
+				p.setPid(rs.getInt("pid"));
+				p.setUid(rs.getInt("uid"));
+				p.setProd_category(rs.getString("prod_category"));
+				p.setProd_name(rs.getString("prod_name"));
+				p.setProd_model(rs.getString("prod_model"));
+				p.setProd_price(rs.getInt("prod_price"));
+				p.setProd_desc(rs.getString("prod_desc"));
+				p.setProd_img(rs.getString("prod_img"));
+				list.add(p);
+			}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	
 }
