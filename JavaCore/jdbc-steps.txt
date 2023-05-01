@@ -1,0 +1,118 @@
+
+	JDBC (Java Database Connectivity)
+
+	There are 5 steps involved in JDBC
+
+	1) Import the Driver.
+
+	e.g Class.forName("com.mysql.jdbc.Driver")
+
+	2) Establish the Connections.
+
+	e.g Connection conn = Driver.getDriverManager("url","username","root")
+
+	      i) url : jdbc:mysql://localhost:3306/database-name
+	     ii) uname : root
+	    iii) password : 
+
+	3) Write the Query
+
+		e.g insert/update/select/delete
+
+	String sql = "insert into emp (fname,email,mob) values (?,?,?)";
+
+	4) Prepare the Statement
+
+		e.g PrepareStatement pst = conn.prepareStatement(sql)
+
+	5) Execute the Query.
+
+	- for insert/update/delete query : make use of executeUpdate().
+
+	- for select query : make use of executeQuery().
+
+====================================================================	
+
+	Queries : 
+
+	create table :
+
+	syntax : 
+
+	create table table-name
+	(
+	col-name data-type constraint,
+	col-name data-type constraint,
+	....,
+	....,
+	....	
+	);
+
+	constraint : primary key, foreign key,auto-increment
+
+	e.g
+
+	CREATE TABLE student(
+	id INT PRIMARY KEY,
+	NAME VARCHAR(20),
+	mobile BIGINT
+	);
+
+======================================================
+
+2) Insert Query
+
+syntax: 
+
+	insert into table-name(col-name,col-name) values (.......);
+
+e.g
+
+	INSERT INTO student(NAME,mobile) VALUES ('chirag',9897499897);
+
+=========================================================
+
+3) Select Query
+
+syntax :
+
+	select * from table-name
+
+e.g
+
+	SELECT * FROM student;
+
+Fetch data by id
+
+	select * from table-name where col-name = value;
+
+	e.g
+
+	SELECT * FROM student WHERE id=5;
+
+=========================================================
+4) Update Query
+
+syntax : 	
+
+	update table-name set col-name = value where col-name=value;
+
+example :
+
+	
+	UPDATE student SET mobile=123456789 WHERE NAME='pramod'
+
+================================================================
+
+5) Delete Query
+
+syntax :
+
+	delete from table-name where col-name=value;
+
+e.g 
+
+	DELETE FROM student WHERE id = 4
+
+
+	
