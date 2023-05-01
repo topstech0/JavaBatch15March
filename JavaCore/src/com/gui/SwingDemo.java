@@ -2,13 +2,16 @@ package com.gui;
 
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-public class SwingDemo {
+public class SwingDemo implements ActionListener{
 	
 	JFrame f;
 	JLabel l1,l2,l3,l4;
@@ -75,17 +78,52 @@ public class SwingDemo {
 		b3.setBounds(50, 300, 100, 30);
 		b4.setBounds(180, 300, 100, 30);
 		
-		
-		
-		
+		b1.addActionListener(this);
+		b2.addActionListener(this);
+		b3.addActionListener(this);
+		b4.addActionListener(this);
 		
 		
 	}
+	
+	
+	@Override
+	public void actionPerformed(ActionEvent ae) {
+		if(ae.getSource()==b1)
+		{
+			//System.out.println("Insert Clicked.");		
+			
+			try {
+				//1) Import the Driver
+				
+				
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+		else if(ae.getSource()==b2)
+		{
+			System.out.println("Searched Clicked.");
+		}
+		else if(ae.getSource()==b3)
+		{
+			System.out.println("Update Clicked.");
+		}
+		else if(ae.getSource()==b4)
+		{
+			System.out.println("Delete Clicked.");
+		}
+	}
+
 	
 	
 	public static void main(String[] args) {
 		
 		new SwingDemo();
 	}
+
+
 
 }
