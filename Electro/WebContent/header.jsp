@@ -142,9 +142,20 @@
 						<div class="header-ctn">
 							<!-- Wishlist -->
 							<div>
-								<a href="#"> <i class="fa fa-heart-o"></i> <span>Your
+								<a href="mywishlist.jsp"> <i class="fa fa-heart-o"></i> <span>Your
 										Wishlist</span>
-									<div class="qty">2</div>
+									<div class="qty">
+									<%
+										if(session!=null)
+										{
+											if(session.getAttribute("wishlist_count")!=null)
+											{
+												out.print(session.getAttribute("wishlist_count"));
+											}
+										}
+									
+									%>									
+									</div>
 								</a>
 							</div>
 							<!-- /Wishlist -->

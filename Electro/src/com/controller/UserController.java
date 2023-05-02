@@ -1,6 +1,8 @@
 package com.controller;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,7 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.bean.User;
+import com.bean.Wishlist;
 import com.dao.UserDao;
+import com.dao.WishlistDao;
 import com.service.Services;
 
 @WebServlet("/UserController")
@@ -62,6 +66,8 @@ public class UserController extends HttpServlet {
 				if(u.getUsertype().equals("user"))
 				{
 					HttpSession session = request.getSession();
+					List<Wishlist> w_list = WishlistDao.getWishListByUser(u.getUid());
+					session.setAttribute("wishlist_count", w_list.size());
 					session.setAttribute("u", u);
 					request.getRequestDispatcher("index.jsp").forward(request, response);					
 				}

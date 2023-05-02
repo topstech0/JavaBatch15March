@@ -1,4 +1,5 @@
 <%@page import="com.dao.WishlistDao"%>
+<%@page import="com.bean.Wishlist"%>
 <%@page import="com.dao.ProductDao"%>
 <%@page import="com.bean.Product"%>
 <%@page import="java.util.List"%>
@@ -35,7 +36,7 @@
 					<!-- section title -->
 					<div class="col-md-12">
 						<div class="section-title">
-							<h3 class="title">New Products</h3>
+							<h3 class="title">My Wishlist</h3>
 						
 						</div>
 					</div>
@@ -47,87 +48,51 @@
 							<div class="products-tabs">
 								<!-- tab -->
 								<div id="tab1" class="tab-pane active">
-									<div class="products-slick" data-nav="#slick-nav-1">
-										<!-- product -->
+									<div class="products-slick" data-nav="#slick-nav-1">			
+
 										
-									<%
-										int pid = Integer.parseInt(request.getParameter("pid"));
-										Product p = ProductDao.getProductById(pid);
-									%>
+
+										<!-- product -->
+										<%
+											List<Wishlist> list = WishlistDao.getWishListByUser(u.getUid());
+											for(Wishlist w : list)
+											{
+												Product p = ProductDao.getProductById(w.getPid());
+										%>
+										
+										
+										
+										
 										
 										<div class="product">
 											<div class="product-img">
 												<img src="Product_Images/<%=p.getProd_img() %>" alt="" height="200px" width="80px">
 												<div class="product-label">
 													<span class="sale">-30%</span>
-													<span class="new">NEW</span>
 												</div>
 											</div>
 											<div class="product-body">
-												<p class="product-category">Category : <%=p.getProd_category() %></p>
-												<h3 class="product-name">Name : <%=p.getProd_name() %></h3>
-												<h4 class="product-price"> Price Rs.<%=p.getProd_price() %></h4>
+												<p class="product-category"><%=p.getProd_category() %></p>
+												<h3 class="product-name"><%=p.getProd_name() %></h3>
+												<h4 class="product-price">Rs. <%=p.getProd_price() %></h4>
 												<div class="product-rating">
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
 												</div>
-												<p class="product-category">Description : <%=p.getProd_desc() %></p>
-												<%
-													if(session.getAttribute("u")!=null)
-													{
-														boolean flag = WishlistDao.checkWishList(u.getUid(), p.getPid());
-														
-														if(flag==false)
-														{
-												%>
-													<a href="add_to_wishlist.jsp?pid=<%=p.getPid()%>&uid=<%=u.getUid()%>">
-													<input type="submit" value="Add to Wishlist" class="btn btn-primary">
-												</a>
-												<% 
-														}
-														else
-														{
-												%>
-												<a href="remove_from_wishlist.jsp?pid=<%=p.getPid()%>&uid=<%=u.getUid()%>">
-													<input type="submit" value="Remove from Wishlist" class="btn btn-danger">
-												</a>
-												<%
-															
-														}
-												%>
-												
-												<%
-													}
-													else
-													{
-												%>
-												
-												<a href="login.jsp">
-													<input type="submit" value="Login" class="btn btn-danger">
-												</a>
-												
-												<%
-														
-													}
-												
-												%>
-												
-												
-												
-																						
+												<div class="product-btns">
+													<a href="product_detail.jsp?pid=<%=p.getPid()%>">
+														<input type="button" value="Details" class="btn btn-primary">
+													</a>
+												</div>
 											</div>
-											<div class="add-to-cart">
-											<a href="add_to_cart.jsp?pid=<%=p.getPid()%>">
+											<!-- <div class="add-to-cart">
 												<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-											</a>
-											</div> 
+											</div> -->
 										</div>
 										<!-- /product -->
-									
-										
+
+										<%
+											}
+										%>
+
 									</div>
 									<div id="slick-nav-1" class="products-slick-nav"></div>
 								</div>
@@ -142,26 +107,11 @@
 			<!-- /container -->
 		</div>
 		<!-- /SECTION -->
-
+		<br><br><br>
+		
 		
 
-		<!-- SECTION -->
-		<div class="section">
-			<!-- container -->
-			<div class="container">
-				<!-- row -->
-				<div class="row">
-
-				
-
-					
-				</div>
-				<!-- /row -->
-			</div>
-			<!-- /container -->
-		</div>
-		<!-- /SECTION -->
-
+	
 		
 
 		
