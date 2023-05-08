@@ -5,10 +5,14 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 public class SwingDemo implements ActionListener{
@@ -91,29 +95,118 @@ public class SwingDemo implements ActionListener{
 	public void actionPerformed(ActionEvent ae) {
 		if(ae.getSource()==b1)
 		{
-			//System.out.println("Insert Clicked.");		
 			
 			try {
-				//1) Import the Driver
+				// Import the Driver
+				Class.forName("com.mysql.jdbc.Driver");
+				
+				//Establish the Connection
+				Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/java21batch", "root", "");
+				
+				//Write the Query
+				
+				String sql = "insert into employee(name,email,mobile) values (?,?,?)";
+				
+				//Prepare the Statement.
+				
+				PreparedStatement pst = conn.prepareStatement(sql);
+				pst.setString(1, t2.getText());
+				pst.setString(2, t3.getText());
+				pst.setString(3, t4.getText());
+				
+				//Execute the Query
+				
+				pst.executeUpdate();
+				
+				JOptionPane.showMessageDialog(b1, "Data Inserted Successfully");
+				t2.setText("");
+				t3.setText("");
+				t4.setText("");
 				
 				
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 			}
 			
 		}
 		else if(ae.getSource()==b2)
 		{
-			System.out.println("Searched Clicked.");
+			//System.out.println("Searched Clicked.");
+			
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+				Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/java21batch", "root", "");
+				String sql = "select * from employee where id=?";
+				PreparedStatement pst = conn.prepareStatement(sql);
+				pst.setInt(1, Integer.parseInt(t1.getText()));
+				ResultSet rs = pst.executeQuery();
+				
+				if(rs.next())
+				{
+					t2.setText(rs.getString("name"));
+					t3.setText(rs.getString("email"));
+					t4.setText(rs.getString("mobile"));
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(b2, "ID not Registered.");
+				}
+				
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		else if(ae.getSource()==b3)
 		{
-			System.out.println("Update Clicked.");
+			//System.out.println("Update Clicked.");
+			
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+				Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/java21batch","root","");
+				String sql = "update employee set name=?,email=?,mobile=? where id=?";
+				PreparedStatement pst = conn.prepareStatement(sql);
+				pst.setString(1, t2.getText());
+				pst.setString(2, t3.getText());
+				pst.setString(3, t4.getText());
+				pst.setInt(4, Integer.parseInt(t1.getText()));
+				pst.executeUpdate();
+				
+				JOptionPane.showMessageDialog(b3, "Data Updated Successfully.");
+				
+				t1.setText("");
+				t2.setText("");
+				t3.setText("");
+				t4.setText("");
+				
+			} catch (Exception e) {
+				
+				e.printStackTrace();
+			}
+			
+			
 		}
 		else if(ae.getSource()==b4)
 		{
-			System.out.println("Delete Clicked.");
+			//System.out.println("Delete Clicked.");
+			
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+				Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/java21batch", "root", "");
+				String sql = "delete from employee where id=?";
+				PreparedStatement pst = conn.prepareStatement(sql);
+				pst.setInt(1, Integer.parseInt(t1.getText()));
+				pst.executeUpdate();
+				JOptionPane.showMessageDialog(b4, "Data Deleted Successfully.");
+				t1.setText("");
+				t2.setText("");
+				t3.setText("");
+				t4.setText("");
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
