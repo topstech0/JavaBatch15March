@@ -10,8 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.bean.Cart;
 import com.bean.User;
 import com.bean.Wishlist;
+import com.dao.CartDao;
 import com.dao.UserDao;
 import com.dao.WishlistDao;
 import com.service.Services;
@@ -66,8 +68,15 @@ public class UserController extends HttpServlet {
 				if(u.getUsertype().equals("user"))
 				{
 					HttpSession session = request.getSession();
+					
+					//WishList - Count
 					List<Wishlist> w_list = WishlistDao.getWishListByUser(u.getUid());
 					session.setAttribute("wishlist_count", w_list.size());
+					
+					//Cart - Count
+					List<Cart> c_list = CartDao.getCartByUser(u.getUid());
+					session.setAttribute("cart_count", c_list.size());
+					
 					session.setAttribute("u", u);
 					request.getRequestDispatcher("index.jsp").forward(request, response);					
 				}
