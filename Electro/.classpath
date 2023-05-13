@@ -16,5 +16,7 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="F:/Downloads/Paytm_Web_Sample_Kit_Java-master-20230511T090303Z-001/Paytm_Web_Sample_Kit_Java-master/Java Kit 1.8/PaytmChecksum.jar"/>
+	<classpathentry kind="lib" path="F:/Downloads/Paytm_Web_Sample_Kit_Java-master-20230511T090303Z-001/Paytm_Web_Sample_Kit_Java-master/Sample Kit/paytm_java/WebContent/WEB-INF/lib/paytm-checksum-1.1.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
