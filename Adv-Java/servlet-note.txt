@@ -1,0 +1,56 @@
+
+
+	Servlet :  it is a java structured file, which includes the predefined
+		   methods i.e doGet and doPost
+
+		: this methods are also called as service methods.
+
+		: it is a Controller also known as the Business Layer.
+
+		: it means that it will take the input from the presentation layer 
+		  i.e front-end and forwards the request to the data layer.
+
+	Lifecycle of Servlet:
+
+		i)   init()
+		ii)  service()
+		iii) destroy()
+
+
+	MVC ( Model View Controller) : separation of concerns.
+
+		i) Model 	: it will handle the data part.
+		ii) View 	: it will handle all the Presentation layer part.
+		iii) Controller : it will handle all the Business layer part.
+
+	JSP : Java Server Pages.
+
+	    : it is the view/front part in mvc.
+
+	    : Like html is also a front-part.
+
+	    : But in html we cannot write the java code.
+	
+	    : whereas in jsp, we can write the java code.
+
+
+	To write java code, it uses 3 predefined tags.
+
+	1) scriptlet tag  :  <%--java code-- %>
+
+		- to write java code.
+
+	2) expression tag :  <%= %>
+
+		- to fetch the data from the data layer.
+
+	3) inclusion tag. :  <%@ include file="filename.extension" %>
+
+
+
+
+
+
+
+	
+
