@@ -12,7 +12,7 @@ public class ProjConn {
 		try {
 			//import the driver
 			Class.forName("com.mysql.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mysql://locahost:3306/test", "root", "");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/test", "root", "");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
