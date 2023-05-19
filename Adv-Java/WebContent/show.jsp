@@ -1,6 +1,6 @@
 <%@page import="java.util.List"%>
 <%@page import="com.bean.Employee"%>
-<%@page import="com.dao.EmpDao"%>
+<%@page import="com.dao.EmployeeDao"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -29,7 +29,7 @@
 </tr>
 
 <%
-List<Employee> list= EmpDao.getAllEmployees();
+	List<Employee> list= EmployeeDao.getAllEmployees();
 for(Employee e : list)
 {
 %>

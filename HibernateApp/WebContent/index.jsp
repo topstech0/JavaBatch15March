@@ -12,7 +12,7 @@
 </head>
 <body>
 
-<form action="" method="post">
+<form action="EmpController" method="post">
 <h3 align="center">Registration Form</h3>
 <br>
 <table align="center">
