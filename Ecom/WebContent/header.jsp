@@ -1,3 +1,4 @@
+<%@page import="com.bean.User"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -45,10 +46,48 @@
 						<li><a href="#"><i class="fa fa-map-marker"></i>Tops- Mota Varachha</a></li>
 					</ul>
 					<ul class="header-links pull-right">
-						<li><a href="#"><i class="fa fa-dollar"></i> USD</a></li>
+					<li><a href="contact.jsp"><i class="fa fa-user-circle-o"></i> Contact Us.</a></li>
+					
+					<%
+						User u = null;
+						if(session!=null)
+						{
+							if(session.getAttribute("u")!=null)
+							{
+								u = (User)session.getAttribute("u");
+								
+					%>
+						<li><span style="color:white">Welcome <b><%=u.getFname() %></b></span></li>
 						<li><a href="profile.jsp"><i class="fa fa-user-o"></i> My Profile</a></li>
-						<li><a href="register.jsp"><i class="fa fa-user-o"></i> Registration</a></li>
-						<li><a href="contact.jsp"><i class="fa fa-user-circle-o"></i> Contact Us.</a></li>
+						<li><a href="changepassword.jsp"><i class="fa fa-key"></i> Change Password</a></li>
+						<li><a href="logout.jsp"><i class="fa fa-sign-out"></i> Logout</a></li>
+					<%			
+						
+							}
+							else
+							{
+					%>
+					
+						<li><a href="register.jsp"><i class="fa fa-user-o"></i> Registration</a></li>						
+						<li><a href="login.jsp"><i class="fa fa-sign-in"></i> Login</a></li>	
+					
+					<%
+							}
+						}
+						else
+						{
+					%>
+						
+						<li><a href="register.jsp"><i class="fa fa-user-o"></i> Registration</a></li>						
+						<li><a href="login.jsp"><i class="fa fa-sign-in"></i> Login</a></li>
+					
+					<%		
+						}
+					%>
+											
+						
+						
+						
 						
 					</ul>
 				</div>
@@ -71,7 +110,17 @@
 						</div>
 						<!-- /LOGO -->
 
-						<!-- SEARCH BAR -->
+						<%
+						
+							User u1 = null;
+							if(session!=null)
+							{
+								if(session.getAttribute("u")!=null)
+								{
+									u1 = (User)session.getAttribute("u");
+									
+						%>
+								<!-- SEARCH BAR -->
 						<div class="col-md-6">
 							<div class="header-search">
 								<form>
@@ -142,6 +191,16 @@
 									</div>
 								</div>
 								<!-- /Cart -->
+						<%			
+						
+								}
+							}
+						
+						
+						%>
+
+
+					
 
 								<!-- Menu Toogle -->
 								<div class="menu-toggle">
