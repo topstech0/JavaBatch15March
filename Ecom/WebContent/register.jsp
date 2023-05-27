@@ -54,6 +54,11 @@
 							</div>
 							<form name="user" method="post" action="UserController">
 								<div class="form-group">
+									<input  type="radio" name="usertype" value="user">User
+									<input  type="radio" name="usertype" value="seller">Seller
+								</div>
+							
+								<div class="form-group">
 									<input class="input" type="text" name="fname" placeholder="First Name">
 								</div>
 								<div class="form-group">

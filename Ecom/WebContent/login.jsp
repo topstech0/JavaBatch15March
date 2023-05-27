@@ -63,6 +63,9 @@
 								
 								<div class="form-group">
 									<input type="submit" value="Login" name="action" class="primary-btn order-submit">
+									<a href="forgot_password.jsp">
+										<input type="button" value="Forgot Password?" class="btn btn-primary">
+									</a>
 								</div>								
 							</form>
 							

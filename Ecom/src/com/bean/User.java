@@ -4,7 +4,7 @@ public class User {
 
 	int uid;
 	long mobile;
-	String fname,lname,email,password,cpassword,gender,address;
+	String fname,lname,email,password,cpassword,gender,address,usertype;
 	
 	public int getUid() {
 		return uid;
@@ -59,6 +59,12 @@ public class User {
 	}
 	public void setAddress(String address) {
 		this.address = address;
+	}
+	public String getUsertype() {
+		return usertype;
+	}
+	public void setUsertype(String usertype) {
+		this.usertype = usertype;
 	}
 	
 	
