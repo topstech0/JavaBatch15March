@@ -19,7 +19,7 @@ public class Emp {
 	private int eid;
 	private String job;
 	private double salary;
-	private Emp einfo;
+	private EmpInfo einfo;
 	
 	@Id
 	@GenericGenerator(name="inc",strategy="increment")
@@ -47,15 +47,19 @@ public class Emp {
 	public void setSalary(double salary) {
 		this.salary = salary;
 	}
-	
+
 	@OneToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
-	@JoinColumn(name="einfo")
-	public Emp getEinfo() {
+	@JoinColumn(name="einfo")	
+	public EmpInfo getEinfo() {
 		return einfo;
 	}
-	public void setEinfo(Emp einfo) {
+
+	public void setEinfo(EmpInfo einfo) {
 		this.einfo = einfo;
 	}
+	
+	
+	
 	
 	
 	

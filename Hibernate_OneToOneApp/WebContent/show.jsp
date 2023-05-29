@@ -17,12 +17,13 @@
 	List<Emp> list = EmpDao.getAllEmp();
 %>
 
-<table>
+<table class="table table-striped">
 	<tr>
 		<th>EINFO</th>
 		<th>FNAME</th>
 		<th>LNAME</th>
 		<th>EMAIL</th>
+		<th>Employee ID</th>
 		<th>JOB</th>
 		<th>SALARY</th>		
 	</tr>
@@ -32,10 +33,10 @@
 %>
 
 	<tr>
-	<td><%=e.getEinfo()%></td>
-	<td><%=e.getEinfo()%></td>
-	<td><%=e.getEinfo()%></td>
-	<td><%=e.getEinfo()%></td>
+	<td><%=e.getEinfo().getEinfo()%></td>
+	<td><%=e.getEinfo().getFname()%></td>
+	<td><%=e.getEinfo().getLname()%></td>
+	<td><%=e.getEinfo().getEmail()%></td>
 	<td><%=e.getEid()%></td>
 	<td><%=e.getJob()%></td>
 	<td><%=e.getSalary() %></td>

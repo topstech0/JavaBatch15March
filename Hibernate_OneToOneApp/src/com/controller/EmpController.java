@@ -31,7 +31,7 @@ public class EmpController extends HttpServlet {
 			Emp e2 = new Emp();
 			e2.setJob(request.getParameter("job"));
 			e2.setSalary(Double.parseDouble(request.getParameter("salary")));
-			e2.setEinfo(e2);
+			e2.setEinfo(e1);
 			EmpDao.insertEmp(e2);
 			response.sendRedirect("show.jsp");
 		}

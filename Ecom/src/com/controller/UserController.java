@@ -61,36 +61,72 @@ public class UserController extends HttpServlet {
 				request.setAttribute("msg", "Invalid Email/Password");
 				request.getRequestDispatcher("login.jsp").forward(request, response);
 			}
-			else
+			else if(u.getUsertype().equals("user"))
 			{
 				HttpSession session = request.getSession();
 				session.setAttribute("u", u);
 				request.getRequestDispatcher("index.jsp").forward(request, response);
-			}	
+			}
+			else
+			{
+				HttpSession session = request.getSession();
+				session.setAttribute("u", u);
+				request.getRequestDispatcher("seller_index.jsp").forward(request, response);
+				
+			}
 			
 		}
 		else if(action.equalsIgnoreCase("change password"))
 		{
 			HttpSession session = request.getSession();
 			User u = (User)session.getAttribute("u");
-			if(u.getPassword().equals(request.getParameter("oldpassword")))
+			if(u.getUsertype().equals("user"))
 			{
-				if(request.getParameter("newpassword").equals(request.getParameter("cnewpassword")))
+				if(u.getPassword().equals(request.getParameter("oldpassword")))
 				{
-					UserDao.changePassword(u.getEmail(), request.getParameter("newpassword"));
-					response.sendRedirect("logout.jsp");
+					if(request.getParameter("newpassword").equals(request.getParameter("cnewpassword")))
+					{
+						UserDao.changePassword(u.getEmail(), request.getParameter("newpassword"));
+						response.sendRedirect("logout.jsp");
+					}
+					else
+					{
+						request.setAttribute("msg", "New and Confirm New Password is Incorrect");
+						request.getRequestDispatcher("changepassword.jsp").forward(request, response);
+					}
 				}
 				else
 				{
-					request.setAttribute("msg", "New and Confirm New Password is Incorrect");
+					request.setAttribute("msg", "Old password is Incorrect.");
 					request.getRequestDispatcher("changepassword.jsp").forward(request, response);
 				}
 			}
 			else
 			{
-				request.setAttribute("msg", "Old password is Incorrect.");
-				request.getRequestDispatcher("changepassword.jsp").forward(request, response);
+				if(u.getPassword().equals(request.getParameter("oldpassword")))
+				{
+					if(request.getParameter("newpassword").equals(request.getParameter("cnewpassword")))
+					{
+						UserDao.changePassword(u.getEmail(), request.getParameter("newpassword"));
+						response.sendRedirect("logout.jsp");
+					}
+					else
+					{
+						request.setAttribute("msg", "New and Confirm New Password is Incorrect");
+						request.getRequestDispatcher("seller_changepassword.jsp").forward(request, response);
+					}
+				}
+				else
+				{
+					request.setAttribute("msg", "Old password is Incorrect.");
+					request.getRequestDispatcher("seller_changepassword.jsp").forward(request, response);
+				}
+				
 			}
+			
+			
+			
+			
 			
 		}
 		else if(action.equalsIgnoreCase("update profile"))
@@ -106,8 +142,17 @@ public class UserController extends HttpServlet {
 			UserDao.updateProfile(u);
 			HttpSession session = request.getSession();
 			session.setAttribute("u", u);
-			request.setAttribute("msg", "Profile updated successfully.");
-			request.getRequestDispatcher("profile.jsp").forward(request, response);
+			if(u.getUsertype().equals("user"))
+			{
+				request.setAttribute("msg", "Profile updated successfully.");
+				request.getRequestDispatcher("profile.jsp").forward(request, response);
+			}
+			else
+			{
+				request.setAttribute("msg", "Profile updated successfully.");
+				request.getRequestDispatcher("seller_profile.jsp").forward(request, response);
+			}	
+			
 		}
 		else if(action.equalsIgnoreCase("send otp"))
 		{
